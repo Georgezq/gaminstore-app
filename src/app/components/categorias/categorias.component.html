@@ -1,0 +1,14 @@
+<swiper-container [slidesPerView]="1.5" spaceBetween="10">
+  @for (cate of (categorias | async); track $index) {
+  <swiper-slide>
+      <ion-card class="item-cat" [style.backgroundImage]="'url(' + cate.imagen_bg + ')'">
+        <div class="content-cat">
+          <div class="name-cat ">{{cate.nombre_cat}}</div>
+          <div class="cover-cat">
+            <img class="img-fluid" [src]="cate.imagen_ref">
+          </div>
+        </div>
+      </ion-card>
+  </swiper-slide>
+  }
+</swiper-container>

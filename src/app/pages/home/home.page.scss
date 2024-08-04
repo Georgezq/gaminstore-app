@@ -1,0 +1,12 @@
+.content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.juegos, .categorias, .noticias {
+  padding: 10px;
+}
+
+.content, .juegos, .categorias, .noticias {
+  height: auto;
+}

@@ -1,0 +1,13 @@
+<swiper-container [slidesPerView]="1.5" spaceBetween="10">
+  @for (item of (games$ | async | slice:0:numElementos); track $index) {
+  <swiper-slide>
+    <ion-card>
+      <img [alt]="item.nombre" [src]="item.imagen" />
+      <div class="header">
+        <p> {{item.nombre | truncateJuegos:25 }} </p>
+        <span> {{item.precio | currency}} </span>
+      </div>
+    </ion-card>
+  </swiper-slide>
+  }
+</swiper-container>
