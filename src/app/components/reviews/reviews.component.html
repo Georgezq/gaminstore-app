@@ -1,12 +1,12 @@
 <swiper-container [slidesPerView]="1.5" spaceBetween="10">
   @for (review of (reviews | slice:0:3); track $index) {
   <swiper-slide>
-    <ion-card style="min-height: 250px;">
-      <img alt="Preview del juego" [src]="review.imagen" />
+    <ion-card style="min-height: 275px; max-height: 275px;">
+      <img alt="Preview del juego" [src]="review.imagen"  [routerLink]="['/juego', review.id_juego]" />
       <ion-card-header
         style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
         <ion-avatar>
-          <img [src]="review.id_usuario.imagenperfil" />
+          <img [src]="review.id_usuario.imagenperfil"  />
         </ion-avatar>
         <div class="icon">
           @if (review.calificacion === true) {

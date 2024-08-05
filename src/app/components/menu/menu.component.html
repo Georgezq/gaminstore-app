@@ -1,0 +1,15 @@
+<ion-menu side="end" menuId="menuPrincipal" contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item [routerLink]="['/home']">Inicio</ion-item>
+      <ion-item [routerLink]="['/tendencias']">Tendencias</ion-item>
+      <ion-item *ngIf="!toggleF" [routerLink]="['/perfil']">Mi perfil</ion-item>
+      <ion-item *ngIf="!toggleF" (click)="endSession()">Cerrar Sesión</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

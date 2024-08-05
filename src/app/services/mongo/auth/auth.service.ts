@@ -169,7 +169,6 @@ export class AuthService {
       const user = auth.currentUser;
       const fecha = auth.currentUser.metadata.creationTime.toString();
 
-      console.log(user);
       if(user !== null){
         const correo = user.email;
         const token = await user.getIdToken();

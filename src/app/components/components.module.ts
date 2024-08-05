@@ -14,13 +14,14 @@ import { NoticiaComponent } from './noticia/noticia.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterLink } from '@angular/router';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent,
-    ReviewsComponent, FooterComponent
+    ReviewsComponent, FooterComponent, MenuComponent
   ],
   exports: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent,
-    ReviewsComponent, FooterComponent
+    ReviewsComponent, FooterComponent, MenuComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,87 @@
+<ion-content class="gradient-background" >
+  <img style="height: 250px; width: 100%; object-fit: cover;" src="https://gaming-cdn.com/img/products/442/pcover/1920x620/442.jpg?v=1716387513">
+
+
+  <ion-content class="content">
+    <form [formGroup]="formReg" (ngSubmit)="signInWithEmailAndPassword()" *ngIf="toggleF">
+
+      <div class="formularios">
+        <div class="content-title" style="margin: 20px 0;">
+          <span style="font-size: 18px; font-weight: bold;">Inicar sesión</span>
+        </div>
+        <div class="content-formularios">
+          <ion-list >
+            <ion-item>
+              <ion-input formControlName="email" labelPlacement="stacked" label="Email">
+                <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="password" type="password" label="Password" labelPlacement="stacked" >
+                <ion-icon slot="start" name="lock-closed"  aria-hidden="true"></ion-icon>
+                <ion-input-password-toggle slot="end" color="medium"></ion-input-password-toggle>
+              </ion-input>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="content-button">
+          <button class="btn-save" type="submit">Ingresar</button>
+        </div>
+
+        <div class="separator">
+          <span>or</span>
+        </div>
+
+        <div class="content-other-login">
+          <div class="icon" (click)="loginGoogle()">
+              <ion-icon name="logo-google" aria-hidden="true" size="large"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form [formGroup]="formReg" (ngSubmit)="registerWithEmailAndPassword()" *ngIf="!toggleF">
+
+      <div class="formularios" >
+        <div class="content-title" style="margin: 20px 0;">
+          <span style="font-size: 18px; font-weight: bold;">Registrate</span>
+        </div>
+        <div class="content-formularios" >
+          <ion-list >
+            <ion-item>
+              <ion-input formControlName="email" labelPlacement="stacked" label="Email">
+                <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="password" type="password" label="Password" labelPlacement="stacked" >
+                <ion-icon slot="start" name="lock-closed"  aria-hidden="true"></ion-icon>
+                <ion-input-password-toggle slot="end" color="medium"></ion-input-password-toggle>
+              </ion-input>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <div class="content-button">
+        <button class="btn-save" type="submit">Registrarme</button>
+      </div>
+
+    </form>
+
+
+
+    <div class="content-register" *ngIf="toggleF">
+      <span>¿No tienes una cuenta? <button (click)="toggleForm()" style="font-size: 14px; color: #0054e9; border: none; background-color: transparent;">¡Registrate ahora!</button> </span>
+    </div>
+    <div class="content-register" *ngIf="!toggleF">
+      <span>¿Ya tienes una cuenta? <button (click)="toggleForm()" style="font-size: 14px; color: #0054e9; border: none; background-color: transparent;">
+        Inicia sesión</button>
+      </span>
+    </div>
+
+  </ion-content>
+
+</ion-content>
+
+
