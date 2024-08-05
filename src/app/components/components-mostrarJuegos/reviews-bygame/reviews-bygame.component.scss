@@ -1,0 +1,21 @@
+.content-title{
+  padding: 0px 10px;
+}
+
+.content-modal{
+  display: flex;
+  flex-direction: column;
+  background-color: #323232;
+  border-radius: 12px;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-addR{
+  padding: 10px 15px;
+  border-radius: 12px;
+  background: linear-gradient(10deg,#ff8000,transparent) #ff4020;
+  color: white;
+}

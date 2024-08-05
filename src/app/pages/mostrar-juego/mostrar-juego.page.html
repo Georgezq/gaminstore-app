@@ -13,7 +13,7 @@
   <div class="amount">
     <div class="descuentos"><del>30%</del></div>
     <div class="descuento" style="color: #ff4020">-60%</div>
-    <div class="total fs-2">{{ juego?.precio }}$</div>
+    <div class="total fs-2">{{ juego?.precio | currency }}</div>
   </div>
 
   <div>
@@ -76,7 +76,7 @@
               <p>Distribuidor:</p>
             </div>
             <div class="info">
-              <p class="text-white">{{ informacion?.distribuidor }}</p>
+              <p>{{ informacion?.distribuidor }}</p>
             </div>
           </div>
 
@@ -96,7 +96,7 @@
               <p>Género:</p>
             </div>
             <div class="info">
-              <p>{{ informacion?.genero.join(", ") }}</p>
+              <p style="text-align: end;">{{ informacion?.genero.join(", ") }}</p>
             </div>
           </div>
         </div>
@@ -254,5 +254,7 @@
   </div>
 
   }}
+
+  <app-reviews-bygame [juegoId]="juegoId"></app-reviews-bygame>
 
 </ion-content>

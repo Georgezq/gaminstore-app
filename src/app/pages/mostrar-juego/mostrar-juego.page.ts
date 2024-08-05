@@ -8,9 +8,9 @@ import { AuthService } from 'src/app/services/mongo/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GamesService } from 'src/app/services/firebase/games/games.service';
 import { Title } from '@angular/platform-browser';
-import { ToolbarHeaderComponent } from 'src/app/components/toolbar-header/toolbar-header.component';
 import { ComponentesModule } from 'src/app/components/components.module';
 import { TruncateJuegosPipe } from 'src/app/pipes/truncate-juegos.pipe';
+import { ReviewsMComponents } from 'src/app/components/components-mostrarJuegos/reviews-components.module';
 
 @Component({
   selector: 'app-mostrar-juego',
@@ -18,7 +18,7 @@ import { TruncateJuegosPipe } from 'src/app/pipes/truncate-juegos.pipe';
   styleUrls: ['./mostrar-juego.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ComponentesModule,
-    TruncateJuegosPipe
+    TruncateJuegosPipe, ReviewsMComponents
   ]
 })
 export class MostrarJuegoPage implements OnInit {

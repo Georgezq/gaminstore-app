@@ -4,15 +4,14 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 
 import { RouterLink } from '@angular/router';
-import { ReviewsBygameComponent } from './reviews-bygame/reviews-bygame.component';
 import { TruncateJuegosPipe } from 'src/app/pipes/truncate-juegos.pipe';
-import { SeeReviewsComponent } from './see-reviews/see-reviews.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { JuegosallComponent } from './juegosall/juegosall.component';
 
 @NgModule({
-  declarations: [ ReviewsBygameComponent, SeeReviewsComponent
+  declarations: [ JuegosallComponent,
   ],
-  exports: [ ReviewsBygameComponent, SeeReviewsComponent
+  exports: [ JuegosallComponent,
   ],
   imports: [
     CommonModule,
@@ -26,4 +25,4 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 })
-export class ReviewsMComponents { }
+export class TendenciasComponents { }

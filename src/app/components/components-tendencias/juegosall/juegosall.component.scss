@@ -1,0 +1,99 @@
+ion-col {
+  background-color: #135d54;
+  border: solid 1px #fff;
+  color: #fff;
+  text-align: center;
+}
+
+.container-first{
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-range{
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cont-precios{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  margin-top: 10px;
+}
+
+input{
+  box-shadow: inset 0 0 0 2px #3d3d3d;
+  caret-color: #fff;
+  caret-shape: block;
+  text-indent: 20px;
+  color: #fff;
+  border-radius: 12px;
+}
+
+input:focus{
+  border: none;
+  outline: 1px solid #ff5400;;
+  caret-color: auto;
+  background-color: hsla(0, 1%, 21%, 0.4);
+}
+
+input{
+  border: none;
+  padding: 12px 0;
+  background-color: hsla(0, 1%, 21%, .4);
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: black;
+  width: 100%;
+}
+
+span{
+  color: white;
+  font-weight: bold;
+}
+
+p{
+  font-size: 16px;
+  text-align: start;
+}
+
+ion-card {
+  margin: 10px;
+}
+
+ion-col{
+  background-color: black;
+  border: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header p {
+  margin: 0;
+}
+
+
+

@@ -1,0 +1,102 @@
+.content-destacadas{
+  padding: 20px;
+  border-radius: 12px;
+  margin: 0 20px;
+  background-color: #323232;
+}
+
+.content-recientes{
+  padding: 20px;
+  border-radius: 12px;
+  margin: 0 20px;
+  background-color: #222121;
+}
+
+.user-calification{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.img-user{
+  border-radius: 50%;
+}
+
+.info-review{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.utilidad{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icons{
+  display: flex;
+  gap: 10px;
+}
+
+.like{
+  padding: 10px 15px;
+}
+
+.likes-count{
+  display: flex;
+  gap: 10px;
+}
+
+.dislike{
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pros-contras{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+li{
+  color: #999;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pros, .contra{
+  margin: 0;
+  padding: 0;
+}
+
+.usuario-profile:hover .img-user {
+  border: 2px solid #ff8000;
+  transform: .2s ease-in-out ;
+}
+
+.like, .dislike{
+  border: 1px solid #999;
+  border-radius: 100px;
+  height: 40px;
+}
+
+.title-head{
+  padding: 10px;
+  font-size: 16px;
+}
+
+swiper-container{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

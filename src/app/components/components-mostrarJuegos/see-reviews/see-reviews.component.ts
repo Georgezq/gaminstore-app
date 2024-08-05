@@ -1,23 +1,23 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/mongo/auth/auth.service';
 import { ReviewsService } from 'src/app/services/mongo/reviews/reviews.service';
+import { AuthService } from 'src/app/services/mongo/auth/auth.service';
 
 @Component({
-  selector: 'app-reviews-bygame',
-  templateUrl: './reviews-bygame.component.html',
-  styleUrls: ['./reviews-bygame.component.scss'],
+  selector: 'app-see-reviews',
+  templateUrl: './see-reviews.component.html',
+  styleUrls: ['./see-reviews.component.scss'],
 })
-export class ReviewsBygameComponent  implements OnInit {
+export class SeeReviewsComponent  implements OnInit {
 
   @Input() juegoId: string;
-  reviewForm: FormGroup;
   reviewCount: number;
   reviews: any[] = [];
   cantidadReviews: string;
   fecha: string;
   mensajeNo: any;
+  readMore = false;
+
 
   display: boolean = false;
 
@@ -32,9 +32,15 @@ export class ReviewsBygameComponent  implements OnInit {
   usuarios$ = inject(AuthService);
   routes$ = inject(Router);
 
-  visible: boolean = false;
-
   constructor() { }
+
+  seeMore(){
+    if(this.readMore == false ){
+      this.readMore = true;
+    } else {
+      this.readMore = false;
+    }
+  }
 
   getReviewCount(): void {
     this.reviews$.countReviewsByGame(this.juegoId).subscribe(
@@ -90,7 +96,6 @@ export class ReviewsBygameComponent  implements OnInit {
   ngOnInit() {
     this.getReviews();
     this.getReviewCount();
-
   }
 
 }

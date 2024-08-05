@@ -1,3 +1,17 @@
-<p>
-  reviews-bygame works!
-</p>
+  <div class="content-title">
+    <h4>Reseñas</h4>
+
+    <div class="content-modal">
+      <div class="content-text ">
+        <span class="fs-5">Basada en {{reviewCount}} reseñas</span>
+      </div>
+      <div class="content-button">
+        <button class="btn-addR" type="button">¡Valora este juego!</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 20px;"></div>
+
+  <app-see-reviews  [juegoId]="juegoId"></app-see-reviews>
