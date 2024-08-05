@@ -1,0 +1,258 @@
+<ion-content>
+  <app-toolbar-header [title]="gameName"></app-toolbar-header>
+  @if ("juego$ | async as juego") {
+  @if ("informacion") {
+  <div class="image-container">
+    <img style="object-fit: cover;" [src]="juego?.portada" alt="Portada del Juego" />
+  </div>
+
+  <div class="content-name" style="padding: 10px;">
+    <span> {{juego?.nombre}} </span>
+  </div>
+
+  <div class="amount">
+    <div class="descuentos"><del>30%</del></div>
+    <div class="descuento" style="color: #ff4020">-60%</div>
+    <div class="total fs-2">{{ juego?.precio }}$</div>
+  </div>
+
+  <div>
+    <div class="content-options">
+      <div class="favorite">
+        <span>
+          @if (inWishlist) {
+          <button severity="secondary" tooltipPosition="bottom" class="btn btn-primary rounded-3 py-2"
+            style="background: rgba(255, 10, 78, 0.2)" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ff0a4e" class="bi bi-heart-fill"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+            </svg>
+          </button>
+          } @else {
+
+          <button severity="secondary" tooltipPosition="bottom" class="btn btn-primary rounded-3 py-2"
+            style="background: #ff4020" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+              viewBox="0 0 16 16">
+              <path
+                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+            </svg>
+          </button>
+          }
+        </span>
+      </div>
+      <div class="addcar text-center">
+        <button class="btn btn-primary rounded-3 px-1 px-md-5" style="background: #ff4020" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus"
+            viewBox="0 0 16 16">
+            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z" />
+            <path
+              d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+          </svg>
+          Añadir a la cesta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="contentAll" class="panel-container">
+    <div class="infoPrincipal">
+      <div class="container">
+        <div class="textoPrincipal">
+          Información adicional
+        </div>
+        <div class="contenido">
+          <div class="infoad">
+            <div class="info">
+              <p>Desarrollador:</p>
+            </div>
+            <div class="info">
+              <p>{{ informacion?.desarrollador }}</p>
+            </div>
+          </div>
+
+          <div class="infoad ">
+            <div class="info">
+              <p>Distribuidor:</p>
+            </div>
+            <div class="info">
+              <p class="text-white">{{ informacion?.distribuidor }}</p>
+            </div>
+          </div>
+
+          <div class="infoad">
+            <div class="info">
+              <p>Fecha de lanzamiento:</p>
+            </div>
+            <div class="info">
+              <p style="color: #9999">
+                {{ informacion?.fechaLanzamiento }}
+              </p>
+            </div>
+          </div>
+
+          <div class="infoad">
+            <div class="info">
+              <p>Género:</p>
+            </div>
+            <div class="info">
+              <p>{{ informacion?.genero.join(", ") }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acercaDe">
+      <div class="textoPrincipal text-white fs-4">Acerca de</div>
+      <div class="contenido">
+        <p *ngIf="!readMore">{{ informacion?.acercade | truncateJuegos:100 }}</p>
+        <p *ngIf="readMore">{{ informacion?.acercade }}</p>
+        <a class="readmore" (click)="seeMore()"> {{read}} </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="contentAll" >
+    <h2>Configuración</h2>
+
+    <div
+      class="content-especificaciones">
+      @if (informacion?.configuracion?.minima.sistema !== null) {
+
+      <div class="especificaciones">
+        <div class="container">
+          <div class="textoPrincipal">mínima*</div>
+          <div class="contenido">
+            <div class="infoad">
+              <div class="type-info">
+                <p>Sistema Operativo:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion?.minima?.sistema }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Procesador:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.minima.procesador }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Memoria:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.minima.memoria }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Gráficos:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.minima.graficos }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Almacenamiento:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.minima.almacenamiento }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      } @if (informacion?.configuracion?.recomendada.sistema !== null) {
+
+      <div class="especificaciones">
+        <div class="container">
+          <div class="textoPrincipal">recomendada*</div>
+          <div class="contenido">
+            <div class="infoad">
+              <div class="type-info">
+                <p>Sistema Operativo:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.recomendada.sistema }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Procesador:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.recomendada.procesador }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Memoria:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.recomendada.memoria }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad">
+              <div class="type-info">
+                <p>Gráficos:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{ informacion?.configuracion.recomendada.graficos }}
+                </p>
+              </div>
+            </div>
+
+            <div class="infoad ">
+              <div class="type-info">
+                <p>Almacenamiento:</p>
+              </div>
+              <div class="info-text ">
+                <p style="text-align: end; font-size: 14px;">
+                  {{
+                  informacion?.configuracion.recomendada.almacenamiento
+                  }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      }
+    </div>
+  </div>
+
+  }}
+
+</ion-content>

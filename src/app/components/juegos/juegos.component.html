@@ -1,7 +1,7 @@
 <swiper-container [slidesPerView]="1.5" spaceBetween="10">
-  @for (item of (games$ | async | slice:0:numElementos); track $index) {
+  @for (item of (games$ | async | slice:0:numElementos); track item.id) {
   <swiper-slide>
-    <ion-card>
+    <ion-card [routerLink]="['/juego', item.id]" >
       <img [alt]="item.nombre" [src]="item.imagen" />
       <div class="header">
         <p> {{item.nombre | truncateJuegos:25 }} </p>

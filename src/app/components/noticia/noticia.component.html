@@ -1,3 +1,18 @@
-<p>
-  noticia works!
-</p>
+<ion-list>
+  <ion-card style="background-color: black;">
+    @for (item of (allNews | slice:0:3); track $index) {
+    <ion-card-content style="padding: 10px 0;">
+          <ion-list>
+
+            <ion-item  style="width: 100%;">
+              <ion-thumbnail slot="start" style="width: 125px; margin: 0;">
+                <img style="width: 100px; border-radius: 12px;" [src]="item.imagen" />
+              </ion-thumbnail>
+              <ion-label style="font-size: 12px;"> {{item.titulo | truncateJuegos:100 }} </ion-label>
+            </ion-item>
+
+          </ion-list>
+        </ion-card-content>
+      }
+      </ion-card>
+    </ion-list>

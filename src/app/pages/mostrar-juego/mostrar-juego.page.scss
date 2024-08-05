@@ -1,0 +1,139 @@
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: black;
+  transform: skewY(-1deg);
+  transform-origin: bottom right;
+  z-index: 1;
+}
+
+img{
+  height: 200px;
+  width: 100%;
+}
+
+#info{
+  position: absolute;
+  top: 40%;
+}
+
+.info-pago{
+  backdrop-filter: blur(60px) saturate(100%);
+  background: transparent;
+  background-image: linear-gradient(1turn, var(--color-dark) 0, rgba(39, 39, 39, 0) 70%);
+}
+
+.infoad {
+  margin-bottom: 10px;
+}
+
+.textoPrincipal {
+  margin-bottom: 20px;
+}
+
+.infoPrincipal .container {
+  padding: 0;
+}
+
+
+#nombreJuego{
+  font-size: 28px;
+}
+
+p{
+  color: #999999;
+  margin: 0;
+}
+
+#contentAll{
+  width: 75%;
+}
+
+.visuales {
+  position: relative;
+  width: 100%;
+}
+
+.visuales video {
+  width: 100%;
+  object-fit: cover;
+  color: aliceblue;
+}
+
+
+@media screen and (max-width: 996px) {
+  #info{
+    top: 15%;
+  }
+
+  #nombreJuego{
+    font-size: 16px;
+  }
+
+  #contentAll{
+    width: 100%;
+  }
+}
+
+.amount{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.content-options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+button{
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+#contentAll{
+  padding: 10px 20px;
+}
+
+.infoad{
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.readmore{
+  text-decoration: underline;
+  color: #b7b7b7;
+}
+
+.content-especificaciones{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.type-info{
+  width: 50%;
+  align-items: end;
+}
+
+.info-text{
+  width: 100%;
+}
+

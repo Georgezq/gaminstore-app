@@ -11,16 +11,24 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TruncateJuegosPipe } from '../pipes/truncate-juegos.pipe';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { NoticiaComponent } from './noticia/noticia.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { FooterComponent } from './footer/footer.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
-  declarations: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent],
-  exports: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent],
+  declarations: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent,
+    ReviewsComponent, FooterComponent
+  ],
+  exports: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent,
+    ReviewsComponent, FooterComponent
+  ],
   imports: [
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
     FormsModule,
-    TruncateJuegosPipe
+    TruncateJuegosPipe,
+    RouterLink
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
