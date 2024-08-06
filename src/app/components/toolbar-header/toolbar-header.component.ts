@@ -20,6 +20,8 @@ export class ToolbarHeaderComponent implements OnInit {
   photoUrl: string;
   usuarioId: string;
   juegosCarritoCount: number;
+  isMenuOpen = false;
+
 
   constructor() {
     addIcons({ create, ellipsisHorizontal, ellipsisVertical, helpCircle, personCircle, search, star });
@@ -47,7 +49,6 @@ export class ToolbarHeaderComponent implements OnInit {
   //     this.juegosCarritoCount = 0;  // Si ocurre algún error, establecer el conteo a 0 para mostrar que no hay artículos en el carrito.
   //   }
   // }
-
 
   ngOnInit(): void {
     this.isAuthenticated();

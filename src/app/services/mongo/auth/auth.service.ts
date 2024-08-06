@@ -249,4 +249,8 @@ export class AuthService {
   }
 
 
+  getUserById(id: string): any {
+    return this.http.get(`${this.api}/usuario/${id}`);
+  }
+
 }
