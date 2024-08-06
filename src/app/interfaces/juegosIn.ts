@@ -8,4 +8,5 @@ export interface JuegosForm {
   precio: number;
   video: string;
   portada?: string;
+  cantidad?: any;
 }

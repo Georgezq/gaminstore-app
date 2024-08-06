@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { URL_API } from '../../conexion';
+import { API, API_KEY_STRIPE, URL_API } from '../../conexion';
+import { Juegos } from 'src/app/interfaces/juegosIn';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,18 @@ import { URL_API } from '../../conexion';
 export class CarritoService {
 
   constructor(private http: HttpClient) { }
+
+  onProceedToPay(juegos: Juegos[], userId: string) {
+    return this.http.post(`${API}/checkout`, { items: juegos, userId: userId }).subscribe({
+      next: async (res: any) => {
+        const stripe = await loadStripe(API_KEY_STRIPE);
+        stripe?.redirectToCheckout({ sessionId: res.id });
+      },
+      error: (err) => {
+        console.error('Error', err);
+      }
+    });
+  }
 
   agregarAlCarrito(idUsuario: string, idJuego: string, estado: boolean): Observable<any> {
     return this.http.post(`${URL_API}carrito`, { id_usuario: idUsuario, id_juego: idJuego, estado: estado });

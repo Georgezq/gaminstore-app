@@ -21,16 +21,16 @@
       <div class="favorite">
         <span>
           @if (inWishlist) {
-          <button severity="secondary" tooltipPosition="bottom" class="btn btn-primary rounded-3 py-2"
+          <button (click)="removeFromWishlist()" severity="secondary" tooltipPosition="bottom" class="btn rounded-3 py-2"
             style="background: rgba(255, 10, 78, 0.2)" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ff0a4e" class="bi bi-heart-fill"
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff0a4e" class="bi bi-heart-fill"
               viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
             </svg>
           </button>
           } @else {
 
-          <button severity="secondary" tooltipPosition="bottom" class="btn text-white rounded-3 py-2"
+          <button (click)="addToWishlist()" severity="secondary" tooltipPosition="bottom" class="btn text-white rounded-3 py-2"
             style="background: #ff4020" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
               viewBox="0 0 16 16">
@@ -42,7 +42,7 @@
         </span>
       </div>
       <div class="addcar text-center">
-        <button class="btn rounded-3 px-1 px-md-5 text-white" style="background: #ff4020" type="button">
+        <button id="open-modal" (click)="addToCart()" class="btn rounded-3 px-1 px-md-5 text-white" style="background: #ff4020" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus"
             viewBox="0 0 16 16">
             <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z" />
@@ -258,3 +258,85 @@
   <app-reviews-bygame [juegoId]="juegoId"></app-reviews-bygame>
 
 </ion-content>
+
+<ion-modal #modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Cesta</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content style="background: #9999;">
+      @if (carritotList.length !== 0){
+        <div class="game ">
+          @for (game of carritotList; track $index) {
+
+              <div class="content-cart d-flex flex-row  px-2 my-4 gap-4">
+                <div class="content-img my-3">
+                  <img [src]="game.imagen" style="width: 250px; height: 100px; object-fit: cover; border-radius: 12px;">
+                </div>
+               <div class="info d-flex flex-column align-items-start justify-content-center w-100">
+                <div class="content-information d-flex flex-row align-items-center justify-content-between w-100 gap-3 ">
+                  <div class="content-name d-flex align-items-center justify-content-start">
+                    <span class="juego-infot">{{game.nombre}}</span>
+                  </div>
+                  <div class="content-price d-flex align-items-center justify-content-end">
+                    <span class="juego-infot">{{game.precio | currency}}</span>
+                  </div>
+                </div>
+                <div class="content-removeItem">
+                  <button (click)="removeItem(game.id)">
+                    <i class="bi bi-trash fs-6"></i>
+                  </button>
+                </div>
+               </div>
+              </div>
+
+          }
+        </div>
+       }  @else{
+        <div class="content-games">
+          <div class="enought-cart p-5 my-4 d-flex flex-column align-items-center justify-content-center">
+            <div class="content-icon">
+              <i class="bi bi-cart-plus fs-1" > </i>
+            </div>
+            <div class="content-text">
+              <span class="fs-4">Tu cesta está vacía</span>
+            </div>
+            <div class="info-text text-center my-3">
+              <span class="fs-6" style="color: #999;">No has añadido ningún producto a tu cesta todavía. ¡Navega por la web y encuentra ofertas increíbles!</span>
+            </div>
+            <div class="button-juegos mt-4">
+              <!-- <button [routerLink]="['/tendencias']"  class="text-white p-3">Descubre juegos</button> -->
+            </div>
+          </div>
+        </div>
+       }
+
+       <div class="content-gamesBefore ">
+        <div class="content-text text-start my-3">
+          <span class="fs-6 text-start p-3">Resumen</span>
+        </div>
+        <div class="content-pago p-5 w-100 ">
+         <div class="content-precio d-flex flex-row justify-content-between">
+          <div class="precio-oficial w-100">
+            <span class="fs-6">Precio oficial: </span>
+          </div>
+          <div class="content-precio">
+            {{totalPrice | currency}}
+          </div>
+         </div>
+
+          <div class="btn-pay d-flex align-items-center justify-content-center w-100 ">
+            <button class="paybtn text-white mt-5 py-3 px-5" (click)="onProceedToPay()">Ir a la cesta</button>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+

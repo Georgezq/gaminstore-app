@@ -20,7 +20,7 @@ export class MenuComponent  implements OnInit {
 
   endSession() {
     this.auth$.signOutSession();
-    this.router.navigate(['/inicio']);
+    this.router.navigate(['/home']);
   }
 
   private getUserId() {
