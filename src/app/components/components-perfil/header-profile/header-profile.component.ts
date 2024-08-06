@@ -26,7 +26,9 @@ export class HeaderProfileComponent {
 
   menuOptions = [
     { name: 'Panel de control', link: 'dashboard' },
-    { name: 'Configuración', link: 'settings' }
+    { name: 'Configuración', link: 'settings' },
+    { name: 'Deseados', link: 'deseados' },
+    { name: 'Pedidos', link: 'pedidos' },
   ];
 
   selectedComponent: string = 'dashboard';

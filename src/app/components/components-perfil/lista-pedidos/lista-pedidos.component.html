@@ -1,0 +1,27 @@
+<swiper-container [slidesPerView]="1.5" spaceBetween="10">
+  @for (item of carritotList ; track item.id) {
+  <swiper-slide>
+    <ion-card [routerLink]="['/juego', item.id]">
+      <img [alt]="item.nombre" [src]="item.imagen" />
+      <div class="header">
+        <p> {{item.nombre | truncateJuegos:25 }} </p>
+        <span> {{item.precio | currency}} </span>
+      </div>
+    </ion-card>
+  </swiper-slide>
+  }
+</swiper-container>
+
+
+<ng-template #noPedidos>
+  <div class="alert-message rounded-3 text-center d-flex align-items-center justify-content-center px-5">
+    <span class="mesaage ">
+      No tienes compras en este momento
+    </span>
+  </div>
+</ng-template>
+
+
+
+
+

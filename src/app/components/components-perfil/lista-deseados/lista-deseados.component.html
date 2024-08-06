@@ -1,0 +1,30 @@
+<div class="content-wishlist my-4 d-flex align-items-center justify-content-center">
+  <span class="fs-6 text-center" style="color: #999;">{{deseados}} juegos en tu lista de deseos</span>
+</div>
+
+@if (deseados === 0) {
+<div class="content-message my-4">
+  <div class="container rounded-3 text-center d-flex align-items-center justify-content-center">
+    <span class="mesaage fs-6">
+      ¡Por ahora no cuentas con ningun juego añadido a tu lista de deseos, visita la página principal para añadir
+      algunos!
+    </span>
+  </div>
+</div>
+} @else {
+
+
+<swiper-container [slidesPerView]="1.5" spaceBetween="10">
+  @for (item of wishlistGames ; track item.id) {
+  <swiper-slide>
+    <ion-card [routerLink]="['/juego', item.id]">
+      <img [alt]="item.nombre" [src]="item.imagen" />
+      <div class="header">
+        <p> {{item.nombre | truncateJuegos:25 }} </p>
+        <span> {{item.precio | currency}} </span>
+      </div>
+    </ion-card>
+  </swiper-slide>
+  }
+</swiper-container>
+}

@@ -8,13 +8,17 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TruncateJuegosPipe } from 'src/app/pipes/truncate-juegos.pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsUserComponent } from './settings-user/settings-user.component';
+import { ListaPedidosComponent } from './lista-pedidos/lista-pedidos.component';
+import { ListaDeseadosComponent } from './lista-deseados/lista-deseados.component';
 
 
 
 @NgModule({
-  declarations: [ HeaderProfileComponent, DashboardComponent, SettingsUserComponent
+  declarations: [ HeaderProfileComponent, DashboardComponent, SettingsUserComponent, ListaPedidosComponent,
+    ListaDeseadosComponent
   ],
-  exports: [ HeaderProfileComponent, DashboardComponent, SettingsUserComponent
+  exports: [ HeaderProfileComponent, DashboardComponent, SettingsUserComponent, ListaPedidosComponent,
+    ListaDeseadosComponent
   ],
   imports: [
     CommonModule,
