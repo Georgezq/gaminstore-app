@@ -1,20 +1,21 @@
 <ion-toolbar>
   <ion-buttons slot="secondary">
+    <ion-button >
+      <ion-icon slot="icon-only" name="cart-outline" style="color: #ff4020;"></ion-icon>
+      <ion-badge *ngIf="juegosCarritoCount !== 0" style="background-color: #ff4020; color: white;"> {{juegosCarritoCount}} </ion-badge>
+    </ion-button>
+  </ion-buttons>
+  <ion-title> {{title}} </ion-title>
+  <ion-buttons slot="primary">
     @if (!isLogged) {
       <ion-button [routerLink]="['/auth']" >
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        <ion-icon slot="icon-only" name="person-circle" style="color: #ff4020;"></ion-icon>
       </ion-button>
     } @else {
       <ion-avatar>
         <img [src]="photoUrl">
       </ion-avatar>
-      <ion-menu-button menu="menuPrincipal"> </ion-menu-button>
     }
+    <ion-menu-button menu="menuPrincipal" style="color: #ff4020;"> </ion-menu-button>
   </ion-buttons>
-  <ion-buttons slot="primary">
-    <ion-button>
-      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-  <ion-title> {{title}} </ion-title>
 </ion-toolbar>

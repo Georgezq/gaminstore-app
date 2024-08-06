@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Juegos } from 'src/app/interfaces/juegosIn';
 import { GamesService } from 'src/app/services/firebase/games/games.service';
+import { CarritoService } from 'src/app/services/mongo/carrito/carrito.service';
 import { ReviewsService } from 'src/app/services/mongo/reviews/reviews.service';
 import { WishlistService } from 'src/app/services/mongo/wishlist/wishlist.service';
 
@@ -14,7 +15,7 @@ export class DashboardComponent  implements OnInit {
   auth$ = inject(ReviewsService);
   wishlist$ = inject(WishlistService);
   juegos$ = inject(GamesService);
-  //comprados$ = inject(CarritoService);
+  comprados$ = inject(CarritoService);
 
 
   reviewsList: any[] = [];
@@ -46,7 +47,7 @@ export class DashboardComponent  implements OnInit {
      this.getWishlistCount();
      this.getGamesInWishList();
      this.getWishlistForTheDate();
-    // this.getBuysCount();
+     this.getBuysCount();
   }
 
 
@@ -61,16 +62,16 @@ export class DashboardComponent  implements OnInit {
     );
   }
 
-  // getBuysCount(): void {
-  //   this.comprados$.obtenerCountComprados(this.idUser).subscribe(
-  //     (response) => {
-  //       this.comprados = response.carritoCount;
-  //     },
-  //     (error) => {
-  //       console.error('Error al obtener el número de reviews:', error);
-  //     }
-  //   );
-  // }
+  getBuysCount(): void {
+    this.comprados$.obtenerCountComprados(this.idUser).subscribe(
+      (response) => {
+        this.comprados = response.carritoCount;
+      },
+      (error) => {
+        console.error('Error al obtener el número de reviews:', error);
+      }
+    );
+  }
 
   getWishlistCount(): void {
 

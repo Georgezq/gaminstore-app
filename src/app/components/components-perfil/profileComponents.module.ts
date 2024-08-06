@@ -22,7 +22,8 @@ import { SettingsUserComponent } from './settings-user/settings-user.component';
     ReactiveFormsModule,
     FormsModule,
     TruncateJuegosPipe,
-    RouterLink
+    RouterLink,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
