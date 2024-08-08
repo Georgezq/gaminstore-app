@@ -24,20 +24,27 @@ export class ReviewsComponent  implements OnInit {
   getReviews(): void {
     this.reviews$.getAllReviews().subscribe(
       data => {
-        this.reviews = data;
+        // Ordenar las reviews por fecha más reciente
+        this.reviews = data.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+
+        // Añadir la imagen del juego correspondiente a cada review
         this.reviews.forEach(res => {
           this.juegos$.obtenerJuegoPorId(res.id_juego).subscribe(
             (juegoData) => {
               res.imagen = juegoData.imagen;
+            },
+            (error) => {
+              console.error('Error fetching game data:', error);
             }
-          )
-        })
+          );
+        });
       },
       error => {
         console.error('Error fetching reviews:', error);
       }
     );
   }
+
 
   ngOnInit() {
     this.getReviews();

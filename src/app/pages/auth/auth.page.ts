@@ -39,13 +39,13 @@ export class AuthPage  {
 
 
    signInWithEmailAndPassword(): void {
-    this.auth.login(this.formReg.value)
-    .then(async () => {
-      const storedData = await localStorage.getItem('usuarioLogueado');
+     this.auth.login(this.formReg.value)
+     .then(async () => {
+      const storedData = localStorage.getItem('whentheuserislogged');
       if(storedData != null){
-        this.goodSession();
+       this.goodSession();
       } else{
-        this.badSession();
+       this.badSession();
       }})
       .catch( () => {
 

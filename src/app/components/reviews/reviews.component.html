@@ -6,7 +6,7 @@
       <ion-card-header
         style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
         <ion-avatar>
-          <img [src]="review.id_usuario.imagenperfil"  />
+          <img [src]="review.id_usuario.imagenperfil"  appDefaultProfileImage/>
         </ion-avatar>
         <div class="icon">
           @if (review.calificacion === true) {

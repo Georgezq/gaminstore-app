@@ -1,13 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>noticias</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">noticias</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-toolbar-header title="Noticias"></app-toolbar-header>
+
+  <div class="container-fluid w-100">
+
+    <div class="content-news">
+      <div class="news m-auto d-flex align-items-center justify-content-center flex-column">
+        <span class="text-white fs-4 my-3 fw-bold text-center">Noticias de videojuegos de PC y consolas</span>
+      </div>
+      <div class="container content-others-news">
+        <span class="text-white fs-4">Otras noticias</span>
+
+        <div class="row ">
+
+          <div class="col">
+
+            @for (noticia of allNews; track $index) {
+            <a (click)="goToNoticia(noticia.titulo, noticia['id_noticias'])"  class="d-flex mt-5 w-100 gap-4 align-items-center justify-content-start flex-column flex-md-row">
+              <div class="cover">
+                <img class="img-fluid" [src]="noticia.imagen">
+              </div>
+              <div class="content-news2 w-100" style="flex-direction: column;">
+                  <div class="badge">
+                      <span style="color: #ffffff80; font-size: 15px; text-align: start;"> {{noticia.fecha_creacion}} </span>
+                  </div>
+                  <div class="title"> {{noticia.titulo}} </div>
+                  <div class="text" style="color: #999;">
+                    {{ noticia.contenido | truncateJuegos:150 }}
+                  </div>
+              </div>
+            </a>
+            <div class="separadorx mt-4"></div>
+          }
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 </ion-content>

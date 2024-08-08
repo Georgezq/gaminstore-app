@@ -14,7 +14,6 @@ import { ReviewsMComponents } from 'src/app/components/components-mostrarJuegos/
 import { WishlistService } from 'src/app/services/mongo/wishlist/wishlist.service';
 import { CarritoService } from 'src/app/services/mongo/carrito/carrito.service';
 import { ViewChild } from '@angular/core';
-import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-mostrar-juego',
@@ -70,7 +69,8 @@ export class MostrarJuegoPage implements OnInit {
   }
 
   onProceedToPay() {
-    this.cancel();
+    this.carrito$.onProceedToPay(this.carritotList, this.userId);
+    //this.cancel();
     //this.routeN.navigate(['/carrito'])
   }
 

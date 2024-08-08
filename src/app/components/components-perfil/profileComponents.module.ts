@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsUserComponent } from './settings-user/settings-user.component';
 import { ListaPedidosComponent } from './lista-pedidos/lista-pedidos.component';
 import { ListaDeseadosComponent } from './lista-deseados/lista-deseados.component';
+import { DefaultProfileImageDirective } from 'src/app/directives/default-profile-image.directive';
 
 
 
@@ -27,7 +28,7 @@ import { ListaDeseadosComponent } from './lista-deseados/lista-deseados.componen
     FormsModule,
     TruncateJuegosPipe,
     RouterLink,
-
+    DefaultProfileImageDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

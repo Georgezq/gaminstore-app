@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Noticias } from 'src/app/interfaces/noticiasIn';
 import { NoticiasService } from 'src/app/services/dynamodb/noticias/noticias.service';
 
@@ -10,7 +11,9 @@ import { NoticiasService } from 'src/app/services/dynamodb/noticias/noticias.ser
 export class NoticiaComponent  implements OnInit {
 
   noticias$ = inject(NoticiasService);
+  router = inject(Router);
   allNews: Noticias[] = [];
+
 
   constructor() { }
 
@@ -27,6 +30,14 @@ export class NoticiaComponent  implements OnInit {
         console.error('Error en la petición:', error);
       }
     );
+  }
+
+  formatTitulo(titulo: string): string {
+    return titulo.replace(/ /g, '-');
+  }
+
+  goToNoticia(titulo: string, id: string): void {
+    this.router.navigate(['/vernoticia', this.formatTitulo(titulo)], { queryParams: { noticias: id } });
   }
 
   ngOnInit() {

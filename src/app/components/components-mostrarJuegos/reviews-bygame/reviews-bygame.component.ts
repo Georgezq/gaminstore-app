@@ -1,40 +1,81 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/mongo/auth/auth.service';
 import { ReviewsService } from 'src/app/services/mongo/reviews/reviews.service';
+import { IonModal } from '@ionic/angular/standalone';
+import { Reviews } from 'src/app/interfaces/reviewsIn';
 
 @Component({
   selector: 'app-reviews-bygame',
   templateUrl: './reviews-bygame.component.html',
   styleUrls: ['./reviews-bygame.component.scss'],
 })
-export class ReviewsBygameComponent  implements OnInit {
-
+export class ReviewsBygameComponent implements OnInit {
   @Input() juegoId: string;
   reviewForm: FormGroup;
   reviewCount: number;
   reviews: any[] = [];
-  cantidadReviews: string;
-  fecha: string;
-  mensajeNo: any;
+  @ViewChild(IonModal) modal: IonModal;
 
   display: boolean = false;
 
   selected: 'like' | 'dislike' | null = null;
 
-  userPerfil: string;
-  userId: any;
   userLoggedId: any;
-
 
   reviews$ = inject(ReviewsService);
   usuarios$ = inject(AuthService);
   routes$ = inject(Router);
+  fb = inject(FormBuilder);
 
   visible: boolean = false;
 
-  constructor() { }
+  constructor() {
+    const loggedIndicator = localStorage.getItem('whentheuserislogged');
+
+    if (loggedIndicator) {
+      const parsedData = JSON.parse(loggedIndicator);
+      const id = parsedData.responses.id;
+      this.usuarios$.loginSendData(id).subscribe((res) => {
+        this.userLoggedId = id;
+      });
+    }
+  }
+
+  cancel() {
+    this.modal.dismiss();
+  }
+
+  onSubmit() {
+    const reviewData: Reviews = {
+      id_usuario: this.userLoggedId,
+      id_juego: this.juegoId,
+      comentario: this.reviewForm.value.comentario,
+      calificacion: this.selected === 'like',
+      pros: this.reviewForm.value.pros.filter((pro) => pro !== ''),
+      contras: this.reviewForm.value.contras.filter((contra) => contra !== ''),
+      likes: 0,
+      dislikes: 0,
+    };
+
+    this.reviews$.sendReviews(reviewData).subscribe(() => {
+      this.reviewForm.reset();
+      this.modal.dismiss();
+    });
+  }
+
+  select(option: 'like' | 'dislike') {
+    this.selected = option;
+  }
+
+  get pros() {
+    return this.reviewForm.get('pros') as FormArray;
+  }
+
+  get contras() {
+    return this.reviewForm.get('contras') as FormArray;
+  }
 
   getReviewCount(): void {
     this.reviews$.countReviewsByGame(this.juegoId).subscribe(
@@ -47,50 +88,25 @@ export class ReviewsBygameComponent  implements OnInit {
     );
   }
 
-  getReviews(): void {
-    try {
-      this.reviews$.getReviewsByIdGame(this.juegoId).subscribe(
-        (response) => {
-
-          if (response && response.length > 0) {
-            this.reviews = response;
-            // Procesar las reviews
-            this.reviews.forEach(review => {
-              this.userId = review.id_usuario;
-              const fechaDate = new Date(review.fecha);
-              const opciones: Intl.DateTimeFormatOptions = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              };
-              review.fecha = fechaDate.toLocaleDateString('es-ES', opciones);
-            });
-
-            this.reviews.forEach(review => {
-              this.usuarios$.loginSendData(review.id_usuario).subscribe(userInfo => {
-                review.userInfo = userInfo;
-                this.userPerfil = userInfo.imagenperfil;
-              });
-            });
-          } else {
-            console.log('No reviews found for this game.');
-            this.reviews = [];
-          }
-        },
-        () => {
-          this.mensajeNo = 'Todavia no hay ninguna review para este juego!'
-        }
-      );
-
-    } catch (error) {
-      console.error('Error al intentar obtener las reviews:', error);
-    }
+  presentModal() {
+    this.modal.present();
   }
 
   ngOnInit() {
-    this.getReviews();
     this.getReviewCount();
 
+    this.reviewForm = this.fb.group({
+      comentario: ['', Validators.requiredTrue],
+      pros: this.fb.array([
+        this.fb.control(''),
+        this.fb.control(''),
+        this.fb.control(''),
+      ]),
+      contras: this.fb.array([
+        this.fb.control(''),
+        this.fb.control(''),
+        this.fb.control(''),
+      ]),
+    });
   }
-
 }

@@ -28,11 +28,18 @@ export class ReviewsService {
     return this.http.get(`${URL_API}reviews/countU/${userId}`);
   }
 
+  //Enviar las reviews al API
+
+  sendReviews(reviews: Reviews): Observable<any>{
+   return this.http.post(`${URL_API}reviews`, reviews );
+  }
+
   //Obtener las reviews por usuarios y juegos
 
   getReviewsByIdGame(id: string): Observable<any>{
    return this.http.get(`${URL_API}reviews/game/${id}`);
   }
+
 
   getReviewsByIdUser(id: string): Observable<any>{
     return this.http.get(`${URL_API}reviews/user/${id}`)
@@ -40,6 +47,16 @@ export class ReviewsService {
 
   getReviewsByUserforGame(id: string): Observable<any>{
     return this.http.get(`${URL_API}reviews/userG/${id}`)
+  }
+
+  //Enviar los Likes y dislikes
+
+  likeReview(reviewId: string): Observable<any> {
+    return this.http.post(`${URL_API}/reviews/${reviewId}/like`, {});
+  }
+
+  dislikeReview(reviewId: string): Observable<any> {
+    return this.http.post(`${URL_API}/reviews/${reviewId}/dislike`, {});
   }
 
 }

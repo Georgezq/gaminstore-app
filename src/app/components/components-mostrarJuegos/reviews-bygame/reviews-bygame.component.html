@@ -6,7 +6,7 @@
         <span class="fs-5">Basada en {{reviewCount}} reseñas</span>
       </div>
       <div class="content-button">
-        <button class="btn-addR" type="button">¡Valora este juego!</button>
+        <button class="btn-addR" type="button" id="open-modal" (click)="modal.present()">¡Valora este juego!</button>
       </div>
     </div>
 
@@ -14,4 +14,63 @@
 
   <div style="margin-top: 20px;"></div>
 
+  <ion-modal #modal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Añadir reseña</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+
+        <div class="text-content my-3 mx-auto p-3">
+          <span class="fs-6 text-center" style="color: #9999;">Esta sección te permite opinar sobre el juego después de probarlo. Puedes hablar sobre lo
+            que te ha gustado y que no.
+          </span>
+        </div>
+
+        <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" class="p-3">
+          <div class="content-icons d-flex align-items-center justify-content-center gap-4">
+            <a (click)="select('like')">
+              <i class="bi bi-hand-thumbs-up fs-2" [ngClass]="{'selected-like': selected === 'like'}"></i>
+            </a>
+            <a (click)="select('dislike')">
+              <i class="bi bi-hand-thumbs-down fs-2" [ngClass]="{'selected-dislike': selected === 'dislike'}"></i>
+            </a>
+          </div>
+
+          <label for="comentario" class="form-label fs-5">Deja tu comentario</label>
+          <textarea required class="form-control" formControlName="comentario"
+            placeholder="Este juego me pareció..."></textarea>
+
+          <div class="row content-list my-4 d-flex align-items-center justify-content-between">
+            <div class="col-6 content-pros fs-5">
+              <span>Pros (opcional)</span>
+              <ul formArrayName="pros">
+                <li *ngFor="let pro of pros.controls; let i = index">
+                  <input type="text" class="form-control my-2" [formControlName]="i">
+                </li>
+              </ul>
+            </div>
+            <div class="col-6 content-contras fs-5">
+              <span>Contras (opcional)</span>
+              <ul formArrayName="contras">
+                <li *ngFor="let contra of contras.controls; let i = index">
+                  <input type="text" class="form-control my-2" [formControlName]="i">
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <button type="submit" class="btn px-3 py-2" id="modal-review">Enviar mi review</button>
+        </form>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
   <app-see-reviews  [juegoId]="juegoId"></app-see-reviews>
+

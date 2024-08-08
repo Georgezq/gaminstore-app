@@ -15,6 +15,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
+import { DefaultProfileImageDirective } from '../directives/default-profile-image.directive';
 
 @NgModule({
   declarations: [ToolbarHeaderComponent, PortadaComponent, JuegosComponent, CategoriasComponent, NoticiaComponent,
@@ -29,7 +30,8 @@ import { MenuComponent } from './menu/menu.component';
     ReactiveFormsModule,
     FormsModule,
     TruncateJuegosPipe,
-    RouterLink
+    RouterLink,
+    DefaultProfileImageDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
